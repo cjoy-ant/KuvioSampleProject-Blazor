@@ -1,0 +1,37 @@
+﻿@page "/employees"
+@inject KuvioSampleProject.Data.IEmployeeService EmployeeService;
+
+
+<h1>All Employees</h1>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in employees)
+        {
+        <tr>
+            <td>@employee.Id</td>
+            <td>@employee.FirstName</td>
+            <td>@employee.LastName</td>
+            <td>@employee.Country</td>
+            <td>@employee.Birthday</td>
+            <td>@employee.Age</td>
+        </tr>
+
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<KuvioSampleProject.Data.Employee> employees;
+
+    protected override void OnInitialized()
+    {
+        employees = EmployeeService.GetEmployees();
+    }
+}
