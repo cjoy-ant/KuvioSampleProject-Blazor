@@ -1,0 +1,80 @@
+﻿@page "/projects/{id}"
+@inject KuvioSampleProject.Data.IProjectService ProjectService
+@inject NavigationManager Navigation
+@using Syncfusion.Blazor.Buttons
+
+<h1>Project</h1>
+<EditForm Model="project" OnSubmit="@SubmitForm">
+    <div class="form-group">
+        <label for="id">Id</label>
+        <input id="id" class="form-control" value="@project.Id" readonly />
+    </div>
+    <div class="form-group">
+        <label for="title">Title</label>
+        <InputText id="title" class="form-control" name="title" @bind-Value="@project.Title"></InputText>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <InputTextArea id="description" class="form-control" name="description" @bind-Value="@project.Description"></InputTextArea>
+    </div>
+
+    <div class="form-group">
+        <label for="customer">Customer</label>
+        <InputSelect id="customer" class="form-control" name="customer" @bind-Value="@project.Customer">
+            <option>Mickey Mouse</option>
+            <option>Donald Duck</option>
+        </InputSelect>
+    </div>
+    <div class="form-group">
+        <label for="deadline">Deadline</label>
+        <InputDate id="deadline" class="form-control" name="deadline" @bind-Value="@project.Deadline"></InputDate>
+    </div>
+    <div class="form-group">
+        <span>Complete</span>
+        @* Radio buttons -- how to bind to @project.Complete???? *@
+        <SfRadioButton Label="No" Checked="true" Name="complete" Value="false"></SfRadioButton>
+        <SfRadioButton Label="Yes" Checked="false"Name="complete" Value="true"></SfRadioButton>
+    </div>
+
+    <div class="form-group">
+        <input type="hidden" id="date-modified" name="date-modified" value="@DateTime.Now">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    private KuvioSampleProject.Data.Project project { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (!string.IsNullOrEmpty(Id) & Id == "0")
+        {
+            project = new Data.Project();
+        }
+        else
+        {
+            project = ProjectService.GetProject(Guid.Parse(Id));
+        }
+    }
+
+    private void SubmitForm()
+    {
+
+        if (project.Id == Guid.Empty)
+        {
+            ProjectService.AddProject(project);
+        }
+        else
+        {
+            ProjectService.UpdateProject(project);
+        }
+
+        ProjectService.UpdateProject(project);
+        Navigation.NavigateTo("projects");
+    }
+
+}
