@@ -1,8 +1,9 @@
 ﻿@page "/projects"
 @inject KuvioSampleProject.Data.IProjectService ProjectService
+@inject NavigationManager Navigation
 
 <h1>Projects</h1>
-<button type="button" class="btn btn-primary" id="add-project-btn" aria-label="Add" >Add Project</button>
+<button type="button" class="btn btn-primary" id="add-project-btn" aria-label="Add" @onclick="@GoToAddProject">Add Project</button>
 <br />
 <br />
 <table class="table">
@@ -30,7 +31,7 @@
                 <td>@project.Complete</td>
 
                 <td><a href="projects/@project.Id">Edit</a></td>
-                <td><button class="btn btn-primary" id="delete-project-btn" aria-label="Delete">Delete</button></td>
+                <td><button class="btn btn-primary" id="delete-project-btn" aria-label="Delete" @onclick="@(e=>@HandleDelete(project.Id))">Delete</button></td>
             </tr>
 
         }
@@ -45,4 +46,15 @@
     {
         projects = ProjectService.GetProjects();
     }
+
+    public void GoToAddProject()
+    {
+        Navigation.NavigateTo("projects/0");
+    }
+
+    private void HandleDelete(Guid id)
+    {
+        ProjectService.DeleteProject(id);
+    }
+
 }

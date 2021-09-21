@@ -25,14 +25,44 @@ namespace KuvioSampleProject.Data
                 Title = "Project 2",
                 Description = "Description of Project 2",
                 Customer = "Donald Duck",
-                Deadline = new DateTime(2022, 11, 30),
+                Deadline = new DateTime(2021, 11, 30),
                 Complete = false,
                 DateModified = new DateTime(2021, 09, 21)
             }
         };
+
+        public Project GetProject(Guid id)
+        {
+            return projects.SingleOrDefault(x => x.Id == id);
+        }
+
         public List<Project> GetProjects()
         {
             return projects;
         }
-    }
+
+        public void AddProject(Project project)
+        {
+            var id = Guid.NewGuid();
+            project.Id = id;
+            projects.Add(project);
+        }
+
+        public void DeleteProject(Guid id)
+        {
+            var project = GetProject(id);
+            projects.Remove(project);
+        }
+
+        public void UpdateProject(Project project)
+        {
+            var projectToUpdate = GetProject(project.Id);
+            projectToUpdate.Title = project.Title;
+            projectToUpdate.Description = project.Description;
+            projectToUpdate.Customer = project.Customer;
+            projectToUpdate.Deadline = project.Deadline;
+            projectToUpdate.Complete = project.Complete;
+            projectToUpdate.DateModified = DateTime.Now;
+        }
+}
 }

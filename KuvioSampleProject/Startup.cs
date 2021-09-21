@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Syncfusion.Blazor;
 
 namespace KuvioSampleProject
 {
@@ -31,11 +32,15 @@ namespace KuvioSampleProject
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<IEmployeeService, EmployeeService>();
             services.AddSingleton<IProjectService, ProjectService>();
+            services.AddSyncfusionBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Register Syncfusion License
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTAzNzIzQDMxMzkyZTMyMmUzME9tRjV3anRmU3VUTURaZXFzRjNMNjloYnNRMC9xbGJBK2lMR3ZpNGdqM1k9");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
