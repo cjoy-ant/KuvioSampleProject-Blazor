@@ -30,6 +30,7 @@ namespace KuvioSampleProject
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<IEmployeeService, EmployeeService>();
+            services.AddSingleton<IProjectService, ProjectService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

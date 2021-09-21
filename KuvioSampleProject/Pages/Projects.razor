@@ -1,0 +1,48 @@
+﻿@page "/projects"
+@inject KuvioSampleProject.Data.IProjectService ProjectService
+
+<h1>Projects</h1>
+<button type="button" class="btn btn-primary" id="add-project-btn" aria-label="Add" >Add Project</button>
+<br />
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Title</td>
+            <td>Description</td>
+            <td>Customer</td>
+            <td>Deadline</td>
+            <td>Complete</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in projects)
+        {
+            <tr>
+                <td>@project.Id</td>
+                <td>@project.Title</td>
+                <td>@project.Description</td>
+                <td>@project.Customer</td>
+                <td>@project.Deadline.ToString("d")</td>
+                <td>@project.Complete</td>
+
+                <td><a href="projects/@project.Id">Edit</a></td>
+                <td><button class="btn btn-primary" id="delete-project-btn" aria-label="Delete">Delete</button></td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+
+@code {
+    private List<KuvioSampleProject.Data.Project> projects;
+
+    protected override void OnInitialized()
+    {
+        projects = ProjectService.GetProjects();
+    }
+}
