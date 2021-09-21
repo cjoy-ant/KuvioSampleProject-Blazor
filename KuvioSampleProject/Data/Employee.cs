@@ -14,10 +14,8 @@ namespace KuvioSampleProject.Data
 
         public string Country { get; set; }
 
-        public string Birthday { get; set; }
+        public DateTime Birthday { get; set; }
 
-        public string Age { get; set; }
-
-        public string DateModified { get; set; }
+        public DateTime DateModified { get; set; }
     }
 }

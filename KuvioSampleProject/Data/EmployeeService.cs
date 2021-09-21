@@ -14,27 +14,52 @@ namespace KuvioSampleProject.Data
                 Id = Guid.NewGuid(),
                 FirstName = "Sam",
                 LastName = "Antonio",
-                Country = "USA",
-                Birthday = "1992/01/31",
-                Age="29",
-                DateModified = "2021/09/20"
+                Country = "United States of America",
+                Birthday = new DateTime(1992, 01, 31),
+                DateModified = new DateTime(2021, 09, 20)
             },
             new Employee
             {
                 Id = Guid.NewGuid(),
                 FirstName="Marcelina",
                 LastName="Santiago",
-                Country = "PHL",
-                Birthday ="1985/07/07",
-                Age="36",
-                DateModified="2021/09/20"
+                Country = "Brazil",
+                Birthday = new DateTime(1985, 07, 07),
+                DateModified = new DateTime(2021, 09, 20)
             },
         };
+
+        public void AddEmployee(Employee employee)
+        {
+            var id = Guid.NewGuid();
+            employee.Id = id;
+            employees.Add(employee);
+        }
+
+        public void DeleteEmployee(Guid id)
+        {
+            var employee = GetEmployee(id);
+            employees.Remove(employee);
+        }
+
+        public Employee GetEmployee(Guid id)
+        {
+            return employees.SingleOrDefault(x => x.Id == id);
+        }
 
         public List<Employee> GetEmployees()
         {
             return employees;
         }
 
+        public void UpdateEmployee(Employee employee)
+        {
+            var employeeToUpdate = GetEmployee(employee.Id);
+            employeeToUpdate.FirstName = employee.FirstName;
+            employeeToUpdate.LastName = employee.LastName;
+            employeeToUpdate.Country = employee.Country;
+            employeeToUpdate.Birthday = employee.Birthday;
+            employeeToUpdate.DateModified = DateTime.Now;
+        }
     }
 }

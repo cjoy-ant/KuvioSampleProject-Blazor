@@ -1,14 +1,20 @@
 ﻿@page "/employees"
-@inject KuvioSampleProject.Data.IEmployeeService EmployeeService;
+@inject KuvioSampleProject.Data.IEmployeeService EmployeeService
+@inject NavigationManager Navigation
 
 
-<h1>All Employees</h1>
+<h1>Employees</h1>
+<button type="button" class="btn btn-primary" id="add-employee-btn" aria-label="Add Employee" @onclick="@GoToAddEmployee">Add Employee</button>
+<br/>
 <br />
 <table class="table">
     <thead>
         <tr>
             <td>Id</td>
-            <td>Name</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Country</td>
+            <td>Birthday</td>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +26,9 @@
             <td>@employee.LastName</td>
             <td>@employee.Country</td>
             <td>@employee.Birthday</td>
-            <td>@employee.Age</td>
+
+            <td><a href="employees/@employee.Id">Edit</a></td>
+            <td><button class="btn btn-primary" id="delete-employee-btn" aria-label="Delete" @onclick="@(e => HandleDelete(employee.Id))">Delete</button></td>
         </tr>
 
         }
@@ -33,5 +41,14 @@
     protected override void OnInitialized()
     {
         employees = EmployeeService.GetEmployees();
+    }
+
+    public void GoToAddEmployee() {
+        Navigation.NavigateTo("employees/0");
+    }
+
+    private void HandleDelete(Guid id)
+    {
+        EmployeeService.DeleteEmployee(id);
     }
 }
