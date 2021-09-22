@@ -31,9 +31,12 @@
     </div>
     <div class="form-group">
         <span>Complete</span>
-        @* Radio buttons -- how to bind to @project.Complete???? *@
-        <SfRadioButton Label="No" Checked="true" Name="complete" Value="false"></SfRadioButton>
-        <SfRadioButton Label="Yes" Checked="false"Name="complete" Value="true"></SfRadioButton>
+        <label for="complete-no">No</label>
+        <input type="radio" id="complete-no" name="complete" value="false">
+        <label for="complete-no">Yes</label>
+        <input type="radio" id="complete-yes" name="complete" value="true">
+        @*<SfRadioButton Label="No" Checked="true" Name="complete" Value="false"></SfRadioButton>
+        <SfRadioButton Label="Yes" Checked="false"Name="complete" Value="true"></SfRadioButton>*@
     </div>
 
     <div class="form-group">
@@ -59,6 +62,8 @@
         {
             project = ProjectService.GetProject(Guid.Parse(Id));
         }
+
+        project.Deadline = DateTime.Now;
     }
 
     private void SubmitForm()
