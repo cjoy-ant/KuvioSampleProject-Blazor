@@ -1,7 +1,6 @@
 ﻿@page "/projects/{id}"
 @inject KuvioSampleProject.Data.IProjectService ProjectService
 @inject NavigationManager Navigation
-@using Syncfusion.Blazor.Buttons
 
 <h1>Project</h1>
 <EditForm Model="project" OnSubmit="@SubmitForm">
@@ -35,8 +34,6 @@
         <input type="radio" id="complete-no" name="complete" value="false">
         <label for="complete-no">Yes</label>
         <input type="radio" id="complete-yes" name="complete" value="true">
-        @*<SfRadioButton Label="No" Checked="true" Name="complete" Value="false"></SfRadioButton>
-        <SfRadioButton Label="Yes" Checked="false"Name="complete" Value="true"></SfRadioButton>*@
     </div>
 
     <div class="form-group">

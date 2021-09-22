@@ -10,6 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.ResponseCompression;
+using System.Net.Http;
 
 namespace KuvioSampleProject
 {
@@ -31,14 +34,35 @@ namespace KuvioSampleProject
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<IEmployeeService, EmployeeService>();
             services.AddSingleton<IProjectService, ProjectService>();
+            services.AddDbContext<SqlDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddResponseCompression(opts =>
+            {
+                opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+                    new[] { "application/octet-stream" });
+            });
+            if (!services.Any(x => x.ServiceType == typeof(HttpClient)))
+            {
+                services.AddScoped<HttpClient>(s =>
+                {
+                    var uriHelper = s.GetRequiredService<NavigationManager>();
+                    return new HttpClient
+                    {
+                        BaseAddress = new Uri(uriHelper.BaseUri)
+                    };
+                });
+            }
+            services.AddCors(policy =>
+            {
+                policy.AddPolicy("CorsPolicy", opt => opt
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // Register Syncfusion License
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTAzNzIzQDMxMzkyZTMyMmUzME9tRjV3anRmU3VUTURaZXFzRjNMNjloYnNRMC9xbGJBK2lMR3ZpNGdqM1k9");
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -59,6 +83,7 @@ namespace KuvioSampleProject
             {
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
+                endpoints.MapControllers();
             });
         }
     }
