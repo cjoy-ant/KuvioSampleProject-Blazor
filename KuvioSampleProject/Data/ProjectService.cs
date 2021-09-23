@@ -15,7 +15,7 @@ namespace KuvioSampleProject.Data
                 Id = Guid.NewGuid(),
                 Title = "Project 1",
                 Description = "Description of Project 1",
-                Customer = "Mickey Mouse",
+                Customer = Guid.NewGuid(),
                 Deadline = new DateTime(2021, 10, 31),
                 Complete = false,
                 DateModified = new DateTime(2021, 09, 21)
@@ -25,7 +25,7 @@ namespace KuvioSampleProject.Data
                 Id = Guid.NewGuid(),
                 Title = "Project 2",
                 Description = "Description of Project 2",
-                Customer = "Donald Duck",
+                Customer = Guid.NewGuid(),
                 Deadline = new DateTime(2021, 11, 30),
                 Complete = false,
                 DateModified = new DateTime(2021, 09, 21)
