@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using KuvioSampleProject.Models;
 
 namespace KuvioSampleProject.Data
 {
@@ -28,6 +29,30 @@ namespace KuvioSampleProject.Data
                 DateModified = new DateTime(2021, 09, 20)
             },
         };
+
+    //public void LoadEmployees()
+    //    {
+    //        Employee e1 = new Employee
+    //        {
+    //            Id = Guid.NewGuid(),
+    //            FirstName = "Sam",
+    //            LastName = "Antonio",
+    //            Country = "United States of America",
+    //            Birthday = new DateTime(1992, 01, 31),
+    //            DateModified = new DateTime(2021, 09, 20)
+    //        };
+    //        Employee e2 = new Employee
+    //        {
+    //            Id = Guid.NewGuid(),
+    //            FirstName = "Marcelina",
+    //            LastName = "Santiago",
+    //            Country = "Brazil",
+    //            Birthday = new DateTime(1985, 07, 07),
+    //            DateModified = new DateTime(2021, 09, 20)
+    //        };
+
+    //        employees = List<Employee> { e1, e2 };
+    //    }
 
         public void AddEmployee(Employee employee)
         {

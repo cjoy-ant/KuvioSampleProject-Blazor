@@ -3,44 +3,53 @@
 @inject NavigationManager Navigation
 
 <h1>Employees</h1>
-<button type="button" class="btn btn-primary" id="add-employee-btn" aria-label="Add" @onclick="@GoToAddEmployee">Add Employee</button>
-<br/>
-<br />
-<table class="table">
-    <thead>
-        <tr>
-            <td>Id</td>
-            <td>First Name</td>
-            <td>Last Name</td>
-            <td>Country</td>
-            <td>Birthday</td>
-            <td></td>
-            <td></td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var employee in employees)
-        {
-        <tr>
-            <td>@employee.Id</td>
-            <td>@employee.FirstName</td>
-            <td>@employee.LastName</td>
-            <td>@employee.Country</td>
-            <td>
-                @employee.Birthday.ToString("m",
-                System.Globalization.CultureInfo.CreateSpecificCulture("en-us"))
-            </td>
+@if (employees == null)
+{
+<div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+}
+else
+{
+    <div>
+        <button type="button" class="btn btn-primary" id="add-employee-btn" aria-label="Add" @onclick="@GoToAddEmployee">Add Employee</button>
+        <br />
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>Country</td>
+                    <td>Birthday</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var employee in employees)
+                {
+                    <tr>
+                        <td>@employee.Id</td>
+                        <td>@employee.FirstName</td>
+                        <td>@employee.LastName</td>
+                        <td>@employee.Country</td>
+                        <td>
+                            @employee.Birthday.ToString("m",
+                 System.Globalization.CultureInfo.CreateSpecificCulture("en-us"))
+                        </td>
 
-            <td><a href="employees/@employee.Id">Edit</a></td>
-            <td><button class="btn btn-primary" id="delete-employee-btn" aria-label="Delete" @onclick="@(e => HandleDelete(employee.Id))">Delete</button></td>
-        </tr>
+                        <td><a href="employees/@employee.Id">Edit</a></td>
+                        <td><button class="btn btn-primary" id="delete-employee-btn" aria-label="Delete" @onclick="@(e => HandleDelete(employee.Id))">Delete</button></td>
+                    </tr>
 
-        }
-    </tbody>
-</table>
+                }
+            </tbody>
+        </table>
+    </div>
+}
 
 @code {
-    private List<KuvioSampleProject.Data.Employee> employees;
+    private List<KuvioSampleProject.Models.Employee> employees;
 
     protected override void OnInitialized()
     {
