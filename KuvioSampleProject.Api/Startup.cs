@@ -35,6 +35,8 @@ namespace KuvioSampleProject.Api
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IAssignmentRepository, AssignmentRepository>();
+
 
             services.AddResponseCompression(opts =>
             {
