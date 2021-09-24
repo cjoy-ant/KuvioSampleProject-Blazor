@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KuvioSampleProject", "KuvioSampleProject\KuvioSampleProject.csproj", "{B53450C9-8AEC-4F2E-9C6F-5ECEDAE7BEB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KuvioSampleProject.Api", "KuvioSampleProject.Api\KuvioSampleProject.Api.csproj", "{BF912109-6526-43F8-90E5-CBD8B4FEAF21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KuvioSampleProject.Api", "KuvioSampleProject.Api\KuvioSampleProject.Api.csproj", "{BF912109-6526-43F8-90E5-CBD8B4FEAF21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KuvioSampleProject.Models", "KuvioSampleProject.Models\KuvioSampleProject.Models.csproj", "{E349F187-7231-46B4-B2D0-C61DC8A4FCBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KuvioSampleProject.Models", "KuvioSampleProject.Models\KuvioSampleProject.Models.csproj", "{E349F187-7231-46B4-B2D0-C61DC8A4FCBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

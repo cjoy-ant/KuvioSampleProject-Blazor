@@ -1,16 +1,16 @@
 ﻿@page "/employees"
-@inject KuvioSampleProject.Data.IEmployeeService EmployeeService
-@inject NavigationManager Navigation
+@inherits EmployeesBase
+@*@inject NavigationManager Navigation*@
 
 <h1>Employees</h1>
-@if (employees == null)
+@if (Employees == null)
 {
-<div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <div class="spinner"></div>
 }
 else
 {
     <div>
-        <button type="button" class="btn btn-primary" id="add-employee-btn" aria-label="Add" @onclick="@GoToAddEmployee">Add Employee</button>
+        <button type="button" class="btn btn-primary" id="add-employee-btn" aria-label="Add" @*@onclick="@GoToAddEmployee"*@>Add Employee</button>
         <br />
         <br />
         <table class="table">
@@ -26,7 +26,7 @@ else
                 </tr>
             </thead>
             <tbody>
-                @foreach (var employee in employees)
+                @foreach (var employee in Employees)
                 {
                     <tr>
                         <td>@employee.Id</td>
@@ -39,7 +39,7 @@ else
                         </td>
 
                         <td><a href="employees/@employee.Id">Edit</a></td>
-                        <td><button class="btn btn-primary" id="delete-employee-btn" aria-label="Delete" @onclick="@(e => HandleDelete(employee.Id))">Delete</button></td>
+                        <td><button class="btn btn-primary" id="delete-employee-btn" aria-label="Delete" @*@onclick="@(e => HandleDelete(employee.Id))"*@>Delete</button></td>
                     </tr>
 
                 }
@@ -48,7 +48,7 @@ else
     </div>
 }
 
-@code {
+@*@code {
     private List<KuvioSampleProject.Models.Employee> employees;
 
     protected override void OnInitialized()
@@ -64,4 +64,4 @@ else
     {
         EmployeeService.DeleteEmployee(id);
     }
-}
+}*@

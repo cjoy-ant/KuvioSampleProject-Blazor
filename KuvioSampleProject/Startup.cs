@@ -1,4 +1,4 @@
-using KuvioSampleProject.Data;
+//using KuvioSampleProject.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -29,8 +29,8 @@ namespace KuvioSampleProject
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<IEmployeeService, EmployeeService>();
-            services.AddSingleton<IProjectService, ProjectService>();
+            //services.AddSingleton<IEmployeeService, EmployeeService>();
+            //services.AddSingleton<IProjectService, ProjectService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
