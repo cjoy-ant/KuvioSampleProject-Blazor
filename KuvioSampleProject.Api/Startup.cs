@@ -33,9 +33,8 @@ namespace KuvioSampleProject.Api
 
             services.AddDbContext<SqlDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-            services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
-
+            services.AddScoped<IProjectRepository, ProjectRepository>();
 
             services.AddResponseCompression(opts =>
             {

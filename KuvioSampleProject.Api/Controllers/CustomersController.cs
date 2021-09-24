@@ -20,7 +20,7 @@ namespace KuvioSampleProject.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetEmployees()
+        public async Task<ActionResult> GetCustomers()
         {
             try
             {

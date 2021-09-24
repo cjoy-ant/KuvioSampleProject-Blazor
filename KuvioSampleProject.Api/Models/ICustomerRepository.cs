@@ -10,7 +10,7 @@ namespace KuvioSampleProject.Api.Models
     {
         Task<IEnumerable<Customer>> GetCustomers();
         Task<Customer> GetCustomer(Guid id);
-        Task<Customer> AddCustomer(Customer project);
+        Task<Customer> AddCustomer(Customer customer);
         Task<Customer> UpdateCustomer(Customer customer);
         void DeleteCustomer(Guid id);
 

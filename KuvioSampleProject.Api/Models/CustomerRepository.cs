@@ -21,9 +21,9 @@ namespace KuvioSampleProject.Api.Models
             return await sqlDbContext.Customers.ToListAsync();
         }
 
-        public async Task<Customer> AddCustomer(Customer project)
+        public async Task<Customer> AddCustomer(Customer customer)
         {
-            var result = await sqlDbContext.Customers.AddAsync(project);
+            var result = await sqlDbContext.Customers.AddAsync(customer);
             await sqlDbContext.SaveChangesAsync();
             return result.Entity;
         }
@@ -33,14 +33,14 @@ namespace KuvioSampleProject.Api.Models
             return await sqlDbContext.Customers.FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public async Task<Customer> UpdateCustomer(Customer project)
+        public async Task<Customer> UpdateCustomer(Customer customer)
         {
-            var customerToUpdate = await sqlDbContext.Customers.FirstOrDefaultAsync(e => e.Id == project.Id);
+            var customerToUpdate = await sqlDbContext.Customers.FirstOrDefaultAsync(e => e.Id == customer.Id);
             if (customerToUpdate != null)
             {
-                customerToUpdate.Name = project.Name;
-                customerToUpdate.Phone = project.Phone;
-                customerToUpdate.Email = project.Email;
+                customerToUpdate.Name = customer.Name;
+                customerToUpdate.Phone = customer.Phone;
+                customerToUpdate.Email = customer.Email;
                 customerToUpdate.DateModified = DateTime.Now;
 
                 await sqlDbContext.SaveChangesAsync();
