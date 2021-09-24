@@ -4,7 +4,7 @@ using System.Text;
 
 namespace KuvioSampleProject.Models
 {
-    class Customer
+    public class Customer
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

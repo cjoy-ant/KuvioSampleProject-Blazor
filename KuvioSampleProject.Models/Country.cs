@@ -4,7 +4,7 @@ using System.Text;
 
 namespace KuvioSampleProject.Models
 {
-    class Country
+    public class Country
     {
         public string Code { get; set; }
         public string Code3 { get; set; }
