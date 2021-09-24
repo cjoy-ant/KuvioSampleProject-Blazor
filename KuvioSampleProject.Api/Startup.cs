@@ -30,8 +30,11 @@ namespace KuvioSampleProject.Api
         {
             services.AddRazorPages();
             services.AddControllers();
+
             services.AddDbContext<SqlDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
+
             services.AddResponseCompression(opts =>
             {
                 opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
