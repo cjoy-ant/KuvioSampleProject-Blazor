@@ -1,4 +1,4 @@
-﻿@page "/projects/{id}"
+﻿@*@page "/projects/{id}"
 @inject KuvioSampleProject.Data.IProjectService ProjectService
 @inject NavigationManager Navigation
 
@@ -47,13 +47,13 @@
     [Parameter]
     public string Id { get; set; }
 
-    private KuvioSampleProject.Data.Project project { get; set; }
+    private KuvioSampleProject.Models.Project project { get; set; }
 
     protected override void OnInitialized()
     {
         if (!string.IsNullOrEmpty(Id) & Id == "0")
         {
-            project = new Data.Project();
+            project = new Models.Project();
         }
         else
         {
@@ -79,4 +79,4 @@
         Navigation.NavigateTo("projects");
     }
 
-}
+}*@

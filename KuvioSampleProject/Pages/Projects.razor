@@ -1,4 +1,4 @@
-﻿@page "/projects"
+﻿@*@page "/projects"
 @inject KuvioSampleProject.Data.IProjectService ProjectService
 @inject NavigationManager Navigation
 
@@ -40,7 +40,7 @@
 
 
 @code {
-    private List<KuvioSampleProject.Data.Project> projects;
+    private List<KuvioSampleProject.Models.Project> projects;
 
     protected override void OnInitialized()
     {
@@ -57,4 +57,4 @@
         ProjectService.DeleteProject(id);
     }
 
-}
+}*@

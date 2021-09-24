@@ -1,4 +1,4 @@
-using KuvioSampleProject.Data;
+//using KuvioSampleProject.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace KuvioSampleProject
 {
@@ -28,17 +29,12 @@ namespace KuvioSampleProject
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
-            services.AddSingleton<IEmployeeService, EmployeeService>();
-            services.AddSingleton<IProjectService, ProjectService>();
+            //services.AddSingleton<IEmployeeService, EmployeeService>();
+            //services.AddSingleton<IProjectService, ProjectService>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // Register Syncfusion License
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTAzNzIzQDMxMzkyZTMyMmUzME9tRjV3anRmU3VUTURaZXFzRjNMNjloYnNRMC9xbGJBK2lMR3ZpNGdqM1k9");
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -59,6 +55,7 @@ namespace KuvioSampleProject
             {
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
+                endpoints.MapControllers();
             });
         }
     }
