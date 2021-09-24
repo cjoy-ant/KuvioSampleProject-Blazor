@@ -1,5 +1,4 @@
-﻿using KuvioSampleProject.Data;
-using KuvioSampleProject.Models;
+﻿using KuvioSampleProject.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,7 +15,8 @@ namespace KuvioSampleProject.Api.Models
         {
             this.sqlDbContext = sqlDbContext;
         }
-        public async Task<List<Employee>> GetEmployees()
+
+        public async Task<IEnumerable<Employee>> GetEmployees()
         {
             return await sqlDbContext.Employees.ToListAsync();
         }

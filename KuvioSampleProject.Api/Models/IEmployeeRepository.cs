@@ -8,7 +8,7 @@ namespace KuvioSampleProject.Api.Models
 {
     public interface IEmployeeRepository
     {
-        Task<List<Employee>> GetEmployees();
+        Task<IEnumerable<Employee>> GetEmployees();
         Task<Employee> GetEmployee(Guid id);
         Task<Employee> AddEmployee(Employee employee);
         Task<Employee> UpdateEmployee(Employee employee);

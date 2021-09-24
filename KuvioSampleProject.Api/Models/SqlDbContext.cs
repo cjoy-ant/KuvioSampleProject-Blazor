@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace KuvioSampleProject.Data
+namespace KuvioSampleProject.Api.Models
 {
     public class SqlDbContext : DbContext
     {

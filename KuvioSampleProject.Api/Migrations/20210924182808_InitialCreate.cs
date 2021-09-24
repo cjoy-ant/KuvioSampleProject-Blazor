@@ -45,8 +45,8 @@ namespace KuvioSampleProject.Api.Migrations
                 columns: new[] { "Id", "Birthday", "Country", "DateModified", "FirstName", "LastName" },
                 values: new object[,]
                 {
-                    { new Guid("23c3ce94-eb63-4fc8-ab27-c3a1f5c6acd1"), new DateTime(1992, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "United States of America", new DateTime(2021, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sam", "Antonio" },
-                    { new Guid("a1035ae7-c837-4869-8d5d-90871560389f"), new DateTime(1985, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Brazil", new DateTime(2021, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Marcelina", "Santiago" }
+                    { new Guid("592b899e-1fc9-411b-8324-8c09ebf64a3d"), new DateTime(1992, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "United States of America", new DateTime(2021, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sam", "Antonio" },
+                    { new Guid("d71c511e-f367-42fe-ac64-018626790563"), new DateTime(1985, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Brazil", new DateTime(2021, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Marcelina", "Santiago" }
                 });
 
             migrationBuilder.InsertData(
@@ -54,8 +54,8 @@ namespace KuvioSampleProject.Api.Migrations
                 columns: new[] { "Id", "Complete", "Customer", "DateModified", "Deadline", "Description", "Title" },
                 values: new object[,]
                 {
-                    { new Guid("2fab4c45-b71e-4e35-b754-a0b463c71505"), false, new Guid("a618c751-20f4-4b15-b619-68651c43c2b2"), new DateTime(2021, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 10, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "Description of Project 1", "Project 1" },
-                    { new Guid("84f880b5-a565-4a0f-846a-f038c94aac48"), false, new Guid("da4a62c7-00a7-42d1-bbff-1ef0abcea02e"), new DateTime(2021, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Description of Project 2", "Project 2" }
+                    { new Guid("5960690c-cce8-4e68-a4f1-0d769be764e9"), false, new Guid("e910cc8c-ebca-4ce4-aa96-8d65a2efca88"), new DateTime(2021, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 10, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "Description of Project 1", "Project 1" },
+                    { new Guid("2c496acb-abe6-42ca-be7c-4b2c290f639d"), false, new Guid("1d1601f2-e9bd-4e5b-b00e-bfac342ea14e"), new DateTime(2021, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2021, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Description of Project 2", "Project 2" }
                 });
         }
 

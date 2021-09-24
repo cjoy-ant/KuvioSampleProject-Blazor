@@ -1,4 +1,4 @@
-using KuvioSampleProject.Data;
+using KuvioSampleProject.Api.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -31,6 +31,7 @@ namespace KuvioSampleProject.Api
             services.AddRazorPages();
             services.AddControllers();
             services.AddDbContext<SqlDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddResponseCompression(opts =>
             {
                 opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
@@ -56,8 +57,13 @@ namespace KuvioSampleProject.Api
             });
         }
 
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        private int EmployeeRepository()
+        {
+            throw new NotImplementedException();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
