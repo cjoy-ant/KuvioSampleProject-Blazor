@@ -66,9 +66,30 @@ namespace KuvioSampleProject.Api.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error posting data to the database");
             }
         }
+        [HttpPut("{id:Guid}")]
+        public async Task<ActionResult<Assignment>> UpdateAssignment(Guid id, Assignment assignment)
+        {
+            try
+            {
+                if (id != assignment.Id)
+                {
+                    return BadRequest("Assignment ID mismatch");
+                }
+                var assignmentToUpdate = await assignmentRepository.GetAssignment(id);
 
+                if (assignmentToUpdate == null)
+                {
+                    return NotFound($"Assignment with Id = {id} not found");
+                }
+                return await assignmentRepository.UpdateAssignment(assignment);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data in the database");
+            }
+        }
     }
 }

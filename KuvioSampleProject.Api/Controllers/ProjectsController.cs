@@ -67,7 +67,30 @@ namespace KuvioSampleProject.Api.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error posting data to the database");
+            }
+        }
+
+        [HttpPut("{id:Guid}")]
+        public async Task<ActionResult<Project>> UpdateProject(Guid id, Project project)
+        {
+            try
+            {
+                if (id != project.Id)
+                {
+                    return BadRequest("Project ID mismatch");
+                }
+                var projectToUpdate = await projectRepository.GetProject(id);
+
+                if (projectToUpdate == null)
+                {
+                    return NotFound($"Project with Id = {id} not found");
+                }
+                return await projectRepository.UpdateProject(project);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data in the database");
             }
         }
     }

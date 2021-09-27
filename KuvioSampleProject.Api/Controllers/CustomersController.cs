@@ -47,7 +47,7 @@ namespace KuvioSampleProject.Api.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error posting data to the database");
             }
         }
 
@@ -68,6 +68,29 @@ namespace KuvioSampleProject.Api.Controllers
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
+
+        [HttpPut("{id:Guid}")]
+        public async Task<ActionResult<Customer>> UpdateCustomer(Guid id, Customer customer)
+        {
+            try
+            {
+                if (id != customer.Id)
+                {
+                    return BadRequest("Customer ID mismatch");
+                }
+                var customerToUpdate = await customerRepository.GetCustomer(id);
+
+                if (customerToUpdate == null)
+                {
+                    return NotFound($"Customer with Id = {id} not found");
+                }
+                return await customerRepository.UpdateCustomer(customer);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data in the database");
             }
         }
     }
