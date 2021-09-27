@@ -33,7 +33,7 @@ namespace KuvioSampleProject.Api.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:Guid}")]
         public async Task<ActionResult<Assignment>> GetAssignment(Guid id)
         {
             try
@@ -44,6 +44,25 @@ namespace KuvioSampleProject.Api.Controllers
                     return NotFound();
                 }
                 return result;
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
+        [HttpPost]
+        public async Task<ActionResult<Project>> CreateAssignment(Assignment assignment)
+        {
+            try
+            {
+                if (assignment == null)
+                {
+                    return BadRequest();
+                }
+
+                var createdAssignment = await assignmentRepository.AddAssignment(assignment);
+
+                return CreatedAtAction(nameof(GetAssignment), new { id = createdAssignment.Id }, createdAssignment);
             }
             catch (Exception)
             {

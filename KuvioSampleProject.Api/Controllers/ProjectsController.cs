@@ -33,7 +33,7 @@ namespace KuvioSampleProject.Api.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:Guid}")]
         public async Task<ActionResult<Project>> GetProject(Guid id)
         {
             try
@@ -51,5 +51,24 @@ namespace KuvioSampleProject.Api.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<ActionResult<Project>> CreateProject(Project project)
+        {
+            try
+            {
+                if (project == null)
+                {
+                    return BadRequest();
+                }
+
+                var createdProject = await projectRepository.AddProject(project);
+
+                return CreatedAtAction(nameof(GetProject), new { id = createdProject.Id }, createdProject);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
     }
 }

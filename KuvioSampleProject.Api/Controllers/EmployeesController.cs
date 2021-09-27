@@ -33,7 +33,7 @@ namespace KuvioSampleProject.Api.Controllers
             }
         }
 
-        [HttpGet("{id}")] // adds id parameter onto the route /api/employees/{id}
+        [HttpGet("{id:Guid}")] // adds id parameter onto the route /api/employees/{id}
         public async Task<ActionResult<Employee>> GetEmployee(Guid id)
         {
             try
@@ -44,6 +44,26 @@ namespace KuvioSampleProject.Api.Controllers
                     return NotFound();
                 }
                 return result;
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Employee>> CreateEmployee(Employee employee)
+        {
+            try
+            {
+                if (employee == null)
+                {
+                    return BadRequest();
+                }
+
+                var createdEmployee = await employeeRepository.AddEmployee(employee);
+
+                return CreatedAtAction(nameof(GetEmployee), new { id = createdEmployee.Id}, createdEmployee); // saves location of createdEmployee in header
             }
             catch (Exception)
             {
