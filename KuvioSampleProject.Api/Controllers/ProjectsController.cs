@@ -1,4 +1,5 @@
 ﻿using KuvioSampleProject.Api.Models;
+using KuvioSampleProject.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -31,5 +32,24 @@ namespace KuvioSampleProject.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retriveing data from the database");
             }
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Project>> GetProject(Guid id)
+        {
+            try
+            {
+                var result = await projectRepository.GetProject(id);
+                if (result == null)
+                {
+                    return NotFound();
+                }
+                return result;
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
+
     }
 }

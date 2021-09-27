@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KuvioSampleProject.Api.Models;
+using KuvioSampleProject.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,11 +13,11 @@ namespace KuvioSampleProject.Api.Controllers
     [ApiController]
     public class AssignmentsController : ControllerBase
     {
-        private readonly IAssignmentRepository assignmentsRepository;
+        private readonly IAssignmentRepository assignmentRepository;
 
-        public AssignmentsController(IAssignmentRepository assignmentsRepository)
+        public AssignmentsController(IAssignmentRepository assignmentRepository)
         {
-            this.assignmentsRepository = assignmentsRepository;
+            this.assignmentRepository = assignmentRepository;
         }
 
         [HttpGet]
@@ -24,12 +25,31 @@ namespace KuvioSampleProject.Api.Controllers
         {
             try
             {
-                return Ok(await assignmentsRepository.GetAssignments()); // Ok derived from ControllerBase
+                return Ok(await assignmentRepository.GetAssignments()); // Ok derived from ControllerBase
             }
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retriveing data from the database");
             }
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Assignment>> GetAssignment(Guid id)
+        {
+            try
+            {
+                var result = await assignmentRepository.GetAssignment(id);
+                if (result == null)
+                {
+                    return NotFound();
+                }
+                return result;
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
+
     }
 }
