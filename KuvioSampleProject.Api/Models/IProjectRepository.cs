@@ -12,7 +12,7 @@ namespace KuvioSampleProject.Api.Models
         Task<Project> GetProject(Guid id);
         Task<Project> AddProject(Project project);
         Task<Project> UpdateProject(Project project);
-        void DeleteProject(Guid id);
+        Task<Project> DeleteProject(Guid id);
 
     }
 }
