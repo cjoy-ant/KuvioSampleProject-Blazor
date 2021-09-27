@@ -12,7 +12,7 @@ namespace KuvioSampleProject.Api.Models
         Task<Employee> GetEmployee(Guid id);
         Task<Employee> AddEmployee(Employee employee);
         Task<Employee> UpdateEmployee(Employee employee);
-        void DeleteEmployee(Guid id);
+        Task<Employee> DeleteEmployee(Guid id);
 
     }
 }

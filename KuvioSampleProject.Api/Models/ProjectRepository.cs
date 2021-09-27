@@ -52,14 +52,16 @@ namespace KuvioSampleProject.Api.Models
             return null;
         }
 
-        public async void DeleteProject(Guid id)
+        public async Task<Project> DeleteProject(Guid id)
         {
             var projectToDelete = await sqlDbContext.Projects.FirstOrDefaultAsync(e => e.Id == id);
             if (projectToDelete != null)
             {
                 sqlDbContext.Projects.Remove(projectToDelete);
                 await sqlDbContext.SaveChangesAsync();
+                return projectToDelete;
             }
+            return null;
         }
 
     }

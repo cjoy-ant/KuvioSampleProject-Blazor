@@ -12,7 +12,7 @@ namespace KuvioSampleProject.Api.Models
         Task<Assignment> GetAssignment(Guid id);
         Task<Assignment> AddAssignment(Assignment assignment);
         Task<Assignment> UpdateAssignment(Assignment assignment);
-        void DeleteAssignment(Guid id);
+        Task<Assignment> DeleteAssignment(Guid id);
 
     }
 }

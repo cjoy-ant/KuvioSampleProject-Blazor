@@ -50,14 +50,16 @@ namespace KuvioSampleProject.Api.Models
             return null;
         }
 
-        public async void DeleteCustomer(Guid id)
+        public async Task<Customer> DeleteCustomer(Guid id)
         {
             var customerToDelete = await sqlDbContext.Customers.FirstOrDefaultAsync(e => e.Id == id);
             if (customerToDelete != null)
             {
                 sqlDbContext.Customers.Remove(customerToDelete);
                 await sqlDbContext.SaveChangesAsync();
+                return customerToDelete;
             }
+            return null;
         }
 
     }

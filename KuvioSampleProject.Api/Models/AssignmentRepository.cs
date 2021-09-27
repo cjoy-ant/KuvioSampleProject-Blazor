@@ -49,14 +49,16 @@ namespace KuvioSampleProject.Api.Models
             return null;
         }
 
-        public async void DeleteAssignment(Guid id)
+        public async Task<Assignment> DeleteAssignment(Guid id)
         {
             var assignmentToDelete = await sqlDbContext.Assignments.FirstOrDefaultAsync(e => e.Id == id);
             if (assignmentToDelete != null)
             {
                 sqlDbContext.Assignments.Remove(assignmentToDelete);
                 await sqlDbContext.SaveChangesAsync();
+                return assignmentToDelete;
             }
+            return null;
         }
 
     }

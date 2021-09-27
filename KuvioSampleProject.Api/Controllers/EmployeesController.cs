@@ -93,5 +93,24 @@ namespace KuvioSampleProject.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data in the database");
             }
         }
+
+        [HttpDelete("{id:Guid}")]
+        public async Task<ActionResult<Employee>> DeleteEmployee(Guid id)
+        {
+            try
+            {
+                var employeeToDelete = await employeeRepository.DeleteEmployee(id);
+
+                if (employeeToDelete == null)
+                {
+                    return NotFound($"Employee with Id = {id} not found");
+                }
+                return await employeeRepository.DeleteEmployee(id);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error removing data in the database");
+            }
+        }
     }
 }
