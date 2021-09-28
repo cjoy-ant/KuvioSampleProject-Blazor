@@ -72,19 +72,15 @@ namespace KuvioSampleProject.Api.Controllers
         }
 
         [HttpPut("{id:Guid}")]
-        public async Task<ActionResult<Employee>> UpdateEmployee(Guid id, Employee employee)
+        public async Task<ActionResult<Employee>> UpdateEmployee(Employee employee)
         {
             try
             {
-                if(id != employee.Id)
-                {
-                    return BadRequest("Employee ID mismatch");
-                }
-                var employeeToUpdate = await employeeRepository.GetEmployee(id);
+                var employeeToUpdate = await employeeRepository.GetEmployee(employee.Id);
 
                 if (employeeToUpdate == null)
                 {
-                    return NotFound($"Employee with Id = {id} not found");
+                    return NotFound($"Employee with Id = {employee.Id} not found");
                 }
                 return await employeeRepository.UpdateEmployee(employee);
             }

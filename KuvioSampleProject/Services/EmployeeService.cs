@@ -1,4 +1,5 @@
 ﻿using KuvioSampleProject.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,14 @@ namespace KuvioSampleProject.Services
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
             return await httpClient.GetFromJsonAsync<Employee[]>("api/employees");
+        }
+
+        public async Task<Employee> UpdateEmployee(Employee updatedEmployee)
+        {
+            var responseMessage = await httpClient.PutAsJsonAsync<Employee>($"api/employees/{updatedEmployee.Id}", updatedEmployee);
+            var content = await responseMessage.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Employee>(content);
+            return result;
         }
     }
 }

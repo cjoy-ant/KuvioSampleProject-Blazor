@@ -29,6 +29,7 @@ namespace KuvioSampleProject
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            //services.AddAutoMapper();
 
             services.AddHttpClient<IEmployeeService, EmployeeService>(client =>
             {
