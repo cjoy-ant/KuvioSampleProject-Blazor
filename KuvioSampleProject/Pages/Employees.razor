@@ -4,7 +4,7 @@
 
 <h1>Employees</h1>
 <div>
-    <button type="button" class="btn btn-primary" id="add-employee-btn" aria-label="Add" @*@onclick="@GoToAddEmployee" *@>Add Employee</button>
+    <button type="button" class="btn btn-primary" id="add-employee-btn" aria-label="Add" @onclick="@GoToAddEmployee">Add Employee</button>
     <br />
     <br />
 
@@ -53,6 +53,6 @@
 @code {
     public void GoToAddEmployee()
     {
-        Navigation.NavigateTo("employees/0");
+        Navigation.NavigateTo($"employees/{Guid.Empty}");
     }
 }
