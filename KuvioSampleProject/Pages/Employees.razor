@@ -1,18 +1,19 @@
 ﻿@page "/employees"
 @inherits EmployeesBase
-@*@inject NavigationManager Navigation*@
+@inject NavigationManager Navigation
 
 <h1>Employees</h1>
-@if (Employees == null)
-{
-    <div class="spinner"></div>
-}
-else
-{
-    <div>
-        <button type="button" class="btn btn-primary" id="add-employee-btn" aria-label="Add" @*@onclick="@GoToAddEmployee"*@>Add Employee</button>
-        <br />
-        <br />
+<div>
+    <button type="button" class="btn btn-primary" id="add-employee-btn" aria-label="Add" @*@onclick="@GoToAddEmployee" *@>Add Employee</button>
+    <br />
+    <br />
+
+    @if (Employees == null)
+    {
+        <div class="spinner"></div>
+    }
+    else
+    {
         <table class="table">
             <thead>
                 <tr>
@@ -39,29 +40,19 @@ else
                         </td>
 
                         <td><a href="employees/@employee.Id">Edit</a></td>
-                        <td><button class="btn btn-primary" id="delete-employee-btn" aria-label="Delete" @*@onclick="@(e => HandleDelete(employee.Id))"*@>Delete</button></td>
+                        <td><button class="btn btn-primary" id="delete-employee-btn" aria-label="Delete" @*@onclick="@(e => HandleDelete(employee.Id))" *@>Delete</button></td>
                     </tr>
 
                 }
             </tbody>
         </table>
-    </div>
-}
 
-@*@code {
-    private List<KuvioSampleProject.Models.Employee> employees;
-
-    protected override void OnInitialized()
-    {
-        employees = EmployeeService.GetEmployees();
     }
+</div>
 
-    public void GoToAddEmployee() {
+@code {
+    public void GoToAddEmployee()
+    {
         Navigation.NavigateTo("employees/0");
     }
-
-    private void HandleDelete(Guid id)
-    {
-        EmployeeService.DeleteEmployee(id);
-    }
-}*@
+}

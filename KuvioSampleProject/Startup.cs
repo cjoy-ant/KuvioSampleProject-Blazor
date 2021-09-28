@@ -34,6 +34,11 @@ namespace KuvioSampleProject
             {
                 client.BaseAddress = new Uri("https://localhost:44368/");
             });
+            services.AddHttpClient<IProjectService, ProjectService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44368/");
+            });
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
