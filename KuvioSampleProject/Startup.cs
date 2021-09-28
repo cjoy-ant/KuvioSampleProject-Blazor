@@ -1,4 +1,4 @@
-//using KuvioSampleProject.Data;
+using KuvioSampleProject.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -29,8 +29,11 @@ namespace KuvioSampleProject
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            //services.AddSingleton<IEmployeeService, EmployeeService>();
-            //services.AddSingleton<IProjectService, ProjectService>();
+
+            services.AddHttpClient<IEmployeeService, EmployeeService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44368/");
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
