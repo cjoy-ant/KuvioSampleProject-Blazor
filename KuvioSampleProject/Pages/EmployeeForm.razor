@@ -1,0 +1,76 @@
+﻿@page "/employees/{id}"
+@inherits EmployeeFormBase
+
+<h3>Employee Form</h3>
+<EditForm Model="@Employee" OnSubmit="HandleSubmit">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label for="id">Id</label>
+        <input id="id" class="form-control" value="@Employee.Id" readonly />
+    </div>
+    <div class="form-group">
+        <label for="first-name">First Name</label>
+        <InputText id="first-name" class="form-control" name="first-name" @bind-Value="Employee.FirstName"></InputText>
+        <ValidationMessage For="@(()=>Employee.FirstName)" />
+    </div>
+    <div class="form-group">
+        <label for="last-name">Last Name</label>
+        <InputText id="last-name" class="form-control" name="last-name" @bind-Value="Employee.LastName"></InputText>
+        <ValidationMessage For="@(()=>Employee.LastName)" />
+    </div>
+
+    <div class="form-group">
+        <label for="country">Country</label>
+        <InputSelect id="country" class="form-control" name="country" @bind-Value="Employee.Country">
+            <option id="BRA" value="BRA">Brazil</option>
+            <option id="CAN" value="CAN">Canada</option>ew
+            <option id="NZL" value="NZL">New Zealand</option>
+            <option id="GBR" value="GBR">United Kingdom</option>
+            <option id="USA" value="USA">United States of America</option>
+        </InputSelect>
+        <ValidationMessage For="@(()=>Employee.Country)" />
+    </div>
+    <div class="form-group">
+        <label for="birthday">Birthday</label>
+        <InputDate id="birthday" class="form-control" name="birthday" @bind-Value="Employee.Birthday"></InputDate>
+        <ValidationMessage For="@(()=>Employee.Birthday)" />
+    </div>
+    @*<div class="form-group">
+            <input type="hidden" id="age" name="aged" value="@CalculateAge">
+        </div>*@
+    <div class="form-group">
+        <input type="hidden" id="date-modified" name="date-modified" value="@DateTime.Now">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</EditForm>
+
+@*@code {
+        //private int CalculateAge(DateTime dob)
+        //{
+        //    int age = 0;
+        //    dob = employee.Birthday;
+        //    age = DateTime.Now.Year – employee.Birthday.Year;
+        //    //age = DateTime.Now.Subtract(dob);
+        //    if (DateTime.Now.DayOfYear < dob.DayOfYear)
+        //        age = age – 1;
+
+        //    return age;
+        //}
+
+        private void SubmitForm()
+        {
+
+            //if (Employee.Id == Guid.Empty)
+            //{
+            //    EmployeeService.AddEmployee(employee);
+            //}
+            //else
+            //{
+            //    EmployeeService.UpdateEmployee(employee);
+            //}
+
+            //EmployeeService.UpdateEmployee(employee);
+            //Navigation.NavigateTo("employees");
+        }
+    }*@
