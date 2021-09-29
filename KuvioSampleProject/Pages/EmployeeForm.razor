@@ -3,7 +3,7 @@
 
 <h3>Employee Form</h3>
 <EditForm Model="@Employee" OnSubmit="HandleSubmit">
-    <DataAnnotationsValidator/>
+    <DataAnnotationsValidator />
     <div class="form-group">
         <label for="id">Id</label>
         <input id="id" class="form-control" value="@Employee.Id" readonly />
@@ -46,31 +46,31 @@
 </EditForm>
 
 @*@code {
-    //private int CalculateAge(DateTime dob)
-    //{
-    //    int age = 0;
-    //    dob = employee.Birthday;
-    //    age = DateTime.Now.Year – employee.Birthday.Year;
-    //    //age = DateTime.Now.Subtract(dob);
-    //    if (DateTime.Now.DayOfYear < dob.DayOfYear)
-    //        age = age – 1;
-
-    //    return age;
-    //}
-
-    private void SubmitForm()
-    {
-
-        //if (Employee.Id == Guid.Empty)
+        //private int CalculateAge(DateTime dob)
         //{
-        //    EmployeeService.AddEmployee(employee);
-        //}
-        //else
-        //{
-        //    EmployeeService.UpdateEmployee(employee);
+        //    int age = 0;
+        //    dob = employee.Birthday;
+        //    age = DateTime.Now.Year – employee.Birthday.Year;
+        //    //age = DateTime.Now.Subtract(dob);
+        //    if (DateTime.Now.DayOfYear < dob.DayOfYear)
+        //        age = age – 1;
+
+        //    return age;
         //}
 
-        //EmployeeService.UpdateEmployee(employee);
-        //Navigation.NavigateTo("employees");
-    }
-}*@
+        private void SubmitForm()
+        {
+
+            //if (Employee.Id == Guid.Empty)
+            //{
+            //    EmployeeService.AddEmployee(employee);
+            //}
+            //else
+            //{
+            //    EmployeeService.UpdateEmployee(employee);
+            //}
+
+            //EmployeeService.UpdateEmployee(employee);
+            //Navigation.NavigateTo("employees");
+        }
+    }*@

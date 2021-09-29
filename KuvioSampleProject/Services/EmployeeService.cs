@@ -17,6 +17,14 @@ namespace KuvioSampleProject.Services
             this.httpClient = httpClient;
         }
 
+        public async Task<Employee> CreateEmployee(Employee newEmployee)
+        {
+            var responseMessage = await httpClient.PostAsJsonAsync<Employee>("/api/employees", newEmployee);
+            var content = await responseMessage.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Employee>(content);
+            return result;
+        }
+
         public async Task<Employee> GetEmployee(Guid id)
         {
             return await httpClient.GetFromJsonAsync<Employee>($"api/employees/{id}");

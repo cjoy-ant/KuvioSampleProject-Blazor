@@ -2,8 +2,6 @@
 using KuvioSampleProject.Services;
 using Microsoft.AspNetCore.Components;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace KuvioSampleProject.Pages
@@ -23,12 +21,34 @@ namespace KuvioSampleProject.Pages
 
         protected async override Task OnInitializedAsync()
         {
-            Employee = await EmployeeService.GetEmployee(Guid.Parse(Id));
+            if (Guid.Parse(Id) != Guid.Empty)
+            {
+                Employee = await EmployeeService.GetEmployee(Guid.Parse(Id));
+            }
+            else
+            {
+                Employee = new Employee
+                {
+                    Id = Guid.Empty,
+                    Country = "BRA",
+                    Birthday = DateTime.Now,
+                    DateModified = DateTime.Now
+                };
+            }
         }
 
         protected async Task HandleSubmit() 
         {
-            var result = await EmployeeService.UpdateEmployee(Employee);
+            Employee result = null;
+
+            if(Employee.Id != Guid.Empty)
+            {
+                result = await EmployeeService.UpdateEmployee(Employee);
+            }
+            else
+            {
+                result = await EmployeeService.CreateEmployee(Employee);
+            }
             if (result != null)
             {
                 NavigationManager.NavigateTo("/employees");

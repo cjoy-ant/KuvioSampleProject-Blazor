@@ -11,5 +11,6 @@ namespace KuvioSampleProject.Services
         Task<IEnumerable<Employee>> GetEmployees();
         Task<Employee> GetEmployee(Guid id);
         Task<Employee> UpdateEmployee(Employee updatedEmployee);
+        Task<Employee> CreateEmployee(Employee newEmployee);
     }
 }
