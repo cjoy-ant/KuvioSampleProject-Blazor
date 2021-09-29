@@ -25,6 +25,11 @@ namespace KuvioSampleProject.Services
             return result;
         }
 
+        public async Task DeleteEmployee(Guid id)
+        {
+            await httpClient.DeleteAsync($"api/employees/{id}");
+        }
+
         public async Task<Employee> GetEmployee(Guid id)
         {
             return await httpClient.GetFromJsonAsync<Employee>($"api/employees/{id}");

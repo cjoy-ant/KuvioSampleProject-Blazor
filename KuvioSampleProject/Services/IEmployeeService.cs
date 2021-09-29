@@ -12,5 +12,6 @@ namespace KuvioSampleProject.Services
         Task<Employee> GetEmployee(Guid id);
         Task<Employee> UpdateEmployee(Employee updatedEmployee);
         Task<Employee> CreateEmployee(Employee newEmployee);
+        Task DeleteEmployee(Guid id);
     }
 }
